@@ -6,6 +6,7 @@ const path = require('path');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
 function createNewNote(body, notesArray) {
   console.log(body);
@@ -15,9 +16,9 @@ function createNewNote(body, notesArray) {
 };
 
 
-app.get("/notes", (req, res) => {
-  res.json(notes);
-});
+// app.get("/notes", (req, res) => {
+//   res.json(notes);
+// });
 
 app.post('/notes', (req, res) => {
   const newNotes = createNewNote(req.body, notes);
@@ -29,6 +30,9 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/index.html"))
 });
 
+app.get("/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/notes.html"))
+});
 
 
 app.listen(PORT, () => {
