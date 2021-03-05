@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
+const notes = require('./db/db.json');
 
 app.get('/notes', (req, res) => {
-    res.send('Note Taker!');
+    res.json(notes);
   });
 
 
