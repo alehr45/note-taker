@@ -3,28 +3,11 @@ const app = express();
 const notes = require("./db/db.json");
 const PORT = process.env.PORT || 3001;
 const path = require('path');
+const fs = require('fs');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
-
-function createNewNote(body, notesArray) {
-  console.log(body);
-  const note = body;
-  notesArray.push(note);
-  return note;
-};
-
-
-// app.get("/notes", (req, res) => {
-//   res.json(notes);
-// });
-
-app.post('/notes', (req, res) => {
-  const newNotes = createNewNote(req.body, notes);
-  res.json(notes);
-});
-
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/index.html"))
@@ -32,6 +15,22 @@ app.get("/", (req, res) => {
 
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/notes.html"))
+});
+
+app.get("/api/notes", function(req, res){
+  let savedNotes = fs.readFileSync(path.join(__dirname, "./db/db.json"))
+  savedNotes = JSON.parse(savedNotes)
+  res.json(savedNotes)
+});
+
+app.post("/api/notes", function(req, res){
+  let savedNotes = fs.readFileSync(path.join(__dirname, "./db/db.json"))
+  savedNotes = JSON.parse(savedNotes)
+  savedNotes.push(req.body)
+  savedNotes = JSON.stringify(savedNotes)
+  fs.writeFileSync(path.join(__dirname, "./db/db.json"),savedNotes)
+  
+  res.json(savedNotes)
 });
 
 
