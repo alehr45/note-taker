@@ -18,10 +18,10 @@
 A quick, easy to use, note taker app that saves notes for later on the local database.
 
 ### **Installation**  
-go to https://note-taker005.herokuapp.com/ to use.
-click pencil to create new note
-click save to save note for later
-click delete to delete the note
+#### go to https://note-taker005.herokuapp.com/ to use.
+#### click pencil to create new note
+#### click save to save note for later
+#### click delete to delete the note
 
 ### **Usage**  
 To create notes for yourself.
