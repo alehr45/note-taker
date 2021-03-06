@@ -16,20 +16,20 @@ app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/notes.html"))
 });
 
-app.get("/api/notes",(req, res) => {
+app.get("/api/notes", function(req, res){
   let savedNotes = fs.readFileSync(path.join(__dirname, "./db/db.json"))
   savedNotes = JSON.parse(savedNotes)
   res.json(savedNotes)
 });
 
 app.post("/api/notes", function(req, res) {
-    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
-    let newNote = req.body;
-    newNote.id = noteID;
-    let noteID = (savedNotes.length).toString();
-    savedNotes.push(newNote);
-    fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
-    res.json(savedNotes);
+  let savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
+  let noteID = (savedNotes.length).toString();
+  let newNote = req.body;
+  newNote.id = noteID;
+  savedNotes.push(newNote);
+  fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+  res.json(savedNotes);
 });
 
 
