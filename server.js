@@ -16,13 +16,13 @@ app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/notes.html"))
 });
 
-app.get("/api/notes", function(req, res){
+app.get("/api/notes",(req, res) => {
   let savedNotes = fs.readFileSync(path.join(__dirname, "./db/db.json"))
   savedNotes = JSON.parse(savedNotes)
   res.json(savedNotes)
 });
 
-app.post("/api/notes", function(req, res) {
+app.post("/api/notes",(req, res) => {
   let savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
   let noteID = (savedNotes.length).toString();
   let newNote = req.body;
@@ -32,7 +32,18 @@ app.post("/api/notes", function(req, res) {
   res.json(savedNotes);
 });
 
+app.delete("/api/notes/:id",(req, res) => {
+  let savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
+  let noteID = req.params.id;
+  savedNotes = savedNotes.filter(currNote => {
+      return currNote.id != noteID;
+  })
+  fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
+  res.json(savedNotes);
+});
+
+
 
 app.listen(PORT, () => {
-  console.log(`API server now on port ${PORT}!`);
+  console.log(`API server is listening on port ${PORT}!`);
 });
