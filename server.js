@@ -42,8 +42,6 @@ app.delete("/api/notes/:id",(req, res) => {
   res.json(savedNotes);
 });
 
-
-
 app.listen(PORT, () => {
   console.log(`API server is listening on port ${PORT}!`);
 });
