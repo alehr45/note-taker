@@ -25,8 +25,8 @@ app.get("/api/notes",(req, res) => {
 app.post("/api/notes", function(req, res) {
     let savedNotes = JSON.parse(fs.readFileSync("./db/db.json"));
     let newNote = req.body;
-    let noteID = (savedNotes.length).toString();
     newNote.id = noteID;
+    let noteID = (savedNotes.length).toString();
     savedNotes.push(newNote);
     fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
     res.json(savedNotes);
