@@ -8,19 +8,20 @@
 * [Installation](#installation)
 * [Contributors](#contributors)
 * [Testing](#Testing)
-* [Licensing](#Licenses)
 * [Contact](#questions)
 
 ========================
+![Alt text](/screenshot.png?raw=true "Optional Title")
 
-### **Repository Name**  
-note-taker
 
 ### **Description**  
 A quick, easy to use, note taker app that saves notes for later on the local database.
 
 ### **Installation**  
-go to https://note-taker005.herokuapp.com/ to use.N/A
+go to https://note-taker005.herokuapp.com/ to use.
+click pencil to create new note
+click save to save note for later
+click delete to delete the note
 
 ### **Usage**  
 To create notes for yourself.
@@ -31,10 +32,6 @@ alehr45
 ### **Testing**  
 N/A
 
-### **License**  
-![badge](https://img.shields.io/badge/license-MIT-brightgreen)  
-
-This application is covered by the MIT license. 
 
 ========================
 
